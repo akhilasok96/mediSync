@@ -2,6 +2,9 @@ package com.example.healthcare;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +30,44 @@ public class LoginActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                String userName = edUsername.getText().toString();
+                String password = edPassword.getText().toString();
+                Database db = new Database(getApplicationContext(), "healthcare", null, 1);
+                if(userName.length() == 0 || password.length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if (db.login(userName, password) == 1)
+                    {
+                        Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+                        SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString("username", userName);
+
+                        // To save our data with key and value.
+
+                        editor.apply();
+                        startActivity(new Intent(LoginActivity.this, HomeActivity2.class));
+                    }
+                    else
+                    {
+                        Toast.makeText(getApplicationContext(), "Invalid username and password....", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+            }
+        });
+
+
+        tv.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
     }
