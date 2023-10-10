@@ -17,29 +17,36 @@ public class HomeActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home2);
 
-        SharedPreferences sharedpreferences= getSharedPreferences("shared_pref", Context.MODE_PRIVATE);
-        String username=sharedpreferences.getString("username","").toString();
-        Toast.makeText(getApplicationContext(), "Welcome"+username, Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedpreferences = getSharedPreferences("shared_pref", Context.MODE_PRIVATE);
+        String username = sharedpreferences.getString("username", "").toString();
+        Toast.makeText(getApplicationContext(), "Welcome" + username, Toast.LENGTH_SHORT).show();
 
-        CardView exit=findViewById(R.id.cardExit);
+        CardView exit = findViewById(R.id.cardExit);
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                SharedPreferences.Editor editor=sharedpreferences.edit();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.apply();
-                startActivity(new Intent(HomeActivity2.this,LoginActivity.class));
+                startActivity(new Intent(HomeActivity2.this, LoginActivity.class));
 
 
             }
         });
-        CardView findDoctor=findViewById(R.id.cardFindDoctor);
+        CardView findDoctor = findViewById(R.id.cardFindDoctor);
         findDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity2.this, FindDoctorActivity.class));
 
+            }
+        });
+        CardView labTest = findViewById(R.id.cardlabTest);
+        labTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity2.this, LabTestActivity.class));
             }
         });
     }
