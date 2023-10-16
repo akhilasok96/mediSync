@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class BookAppoinmentActivity extends AppCompatActivity {
 
@@ -29,14 +32,14 @@ public class BookAppoinmentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appoinment);
 
-        tv=findViewById(R.id.textViewAppTitle);
-        ed1=findViewById(R.id.editTextAppFullName);
-        ed2=findViewById(R.id.editTextAppAddress);
+        tv=findViewById(R.id.textViewBMBPackageName);
+        ed1=findViewById(R.id.editTextBMBFullName);
+        ed2=findViewById(R.id.editTextBMBAddress);
         ed3=findViewById(R.id.editTextAppContactNumber);
         ed4=findViewById(R.id.editTextAppFees);
         dateButton = findViewById(R.id.buttonAppDate);
         timeButton = findViewById(R.id.buttonAppTime);
-        btnBook = findViewById(R.id.buttonBookAppointment);
+        btnBook = findViewById(R.id.buttonBMBAppointment);
         btnBack = findViewById(R.id.buttonAppBack);
 
         ed1.setKeyListener(null);
@@ -84,7 +87,16 @@ public class BookAppoinmentActivity extends AppCompatActivity {
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Database db = new Database(getApplicationContext(),"healthcare",null,1);
+                SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+                String username = sharedPreferences.getString("username","").toString();
+                if(db.checkAppointmentExists(username,title+" => "+fullname,address,contact,dateButton.getText().toString(),timeButton.getText().toString())==1){
+                    Toast.makeText(BookAppoinmentActivity.this, "Appointment already boooked", Toast.LENGTH_SHORT).show();
+                }else{
+                    db.addOrder(username,title+" => "+fullname,address,contact,0,dateButton.getText().toString(),timeButton.getText().toString(),Float.parseFloat(fees),"appointment");
+                    Toast.makeText(BookAppoinmentActivity.this, "Appointment Done Sucessfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BookAppoinmentActivity.this,HomeActivity2.class));
+                }
             }
         });
     }

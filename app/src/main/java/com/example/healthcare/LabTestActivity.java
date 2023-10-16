@@ -54,9 +54,9 @@ public class LabTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_test);
 
-        btnGoToCart = findViewById(R.id.buttonLDAddToCart);
-        btnBack = findViewById(R.id.buttonLDBack);
-        listView = findViewById(R.id.editTextLDTextMultiLine);
+        btnGoToCart = findViewById(R.id.buttonBMDAddToCart);
+        btnBack = findViewById(R.id.buttonBMDBack);
+        listView = findViewById(R.id.editTextTextBMDMultiLine);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,18 +76,24 @@ public class LabTestActivity extends AppCompatActivity {
         }
         sa = new SimpleAdapter(this,list,
                 R.layout.multi_lines,
-                new String[]{"line1","line2","line3","line4","line5"},
-                new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e});
+                new String[] {"line1","line2","line3","line4","line5"},
+                new int[] {R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e});
         listView.setAdapter(sa);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it = new Intent(LabTestActivity.this,LabTestDetailsActivity.class);
-                it.putExtra("text2",packages[i][0]);
-                it.putExtra("text3",packages[i]);
-                it.putExtra("text4",packages[i][4]);
+                it.putExtra("text1",packages[i][0]);
+                it.putExtra("text2",package_details[i]);
+                it.putExtra("text3",packages[i][4]);
                 startActivity(it);
+            }
+        });
+        btnGoToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LabTestActivity.this,CartLabActivity.class));
             }
         });
     }

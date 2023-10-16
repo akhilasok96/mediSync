@@ -27,7 +27,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAppAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBMBAddress" />
 
     <EditText
         android:id="@+id/editTextAppFees"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextAppContactNumber" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewBMTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MediSync"
@@ -67,7 +67,7 @@
         tools:text="MediSync" />
 
     <TextView
-        android:id="@+id/textViewAppTitle"
+        android:id="@+id/textViewBMBPackageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
@@ -77,12 +77,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBMTitle"
         app:layout_constraintVertical_bias="0.028"
         tools:text="Register" />
 
     <EditText
-        android:id="@+id/editTextAppFullName"
+        android:id="@+id/editTextBMBFullName"
         android:layout_width="332dp"
         android:layout_height="45dp"
         android:layout_marginTop="60dp"
@@ -101,10 +101,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAppTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBMBPackageName" />
 
     <EditText
-        android:id="@+id/editTextAppAddress"
+        android:id="@+id/editTextBMBAddress"
         android:layout_width="332dp"
         android:layout_height="45dp"
         android:layout_marginTop="28dp"
@@ -123,7 +123,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAppFullName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextBMBFullName" />
 
     <Button
         android:id="@+id/buttonAppBack"
