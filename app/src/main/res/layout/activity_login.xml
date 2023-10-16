@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextLoginUsername" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewBMTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MediSync"
@@ -49,7 +49,7 @@
         tools:text="MediSync" />
 
     <TextView
-        android:id="@+id/textViewAppTitle"
+        android:id="@+id/textViewBMBPackageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
@@ -59,7 +59,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textViewBMTitle"
         app:layout_constraintVertical_bias="0.089"
         tools:text="Login" />
 
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAppTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewBMBPackageName" />
 
     <Button
         android:id="@+id/buttonLogin"

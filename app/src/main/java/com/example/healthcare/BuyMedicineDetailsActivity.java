@@ -12,32 +12,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class LabTestDetailsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class BuyMedicineDetailsActivity extends AppCompatActivity {
     TextView tvPackageName,tvTotalCost;
-    EditText edDetails;
-    Button btnAddToCart,btnBack;
+    EditText edDeatils;
+    Button btnBack,btnAddToCart;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab_test_details);
+        setContentView(R.layout.activity_buy_medicine_details);
 
         tvPackageName = findViewById(R.id.textViewBMDPackageName);
+        edDeatils = findViewById(R.id.editTextTextBMDMultiLine);
+        edDeatils.setKeyListener(null);
         tvTotalCost = findViewById(R.id.textViewBMDTotalCost);
-        edDetails = findViewById(R.id.editTextTextBMDMultiLine);
-        btnAddToCart = findViewById(R.id.buttonBMDAddToCart);
         btnBack = findViewById(R.id.buttonBMDBack);
-
-        edDetails.setKeyListener(null);
+        btnAddToCart = findViewById(R.id.buttonBMDAddToCart);
 
         Intent intent = getIntent();
         tvPackageName.setText(intent.getStringExtra("text1"));
-        edDetails.setText(intent.getStringExtra("text2"));
-        tvTotalCost.setText("Total Cost: "+intent.getStringExtra("text3")+"/-");
+        edDeatils.setText(intent.getStringExtra("text2"));
+        tvTotalCost.setText("Total Cost : "+intent.getStringExtra("text3")+"/-");
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LabTestDetailsActivity.this,LabTestActivity.class));
+                startActivity(new Intent(BuyMedicineDetailsActivity.this,BuyMedicineActivity.class));
             }
         });
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
@@ -50,16 +51,13 @@ public class LabTestDetailsActivity extends AppCompatActivity {
 
                 Database db = new Database(getApplicationContext(),"healthcare",null,1);
                 if (db.checkCart(username,product)==1){
-                    Toast.makeText(LabTestDetailsActivity.this, "Product already added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Product already added", Toast.LENGTH_SHORT).show();
                 }else{
-                    db.addCart(username,product,price,"lab");
-                    Toast.makeText(LabTestDetailsActivity.this, "Record inserted to cart", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LabTestDetailsActivity.this,LabTestDetailsActivity.class));
+                    db.addCart(username,product,price,"medicine");
+                    Toast.makeText(getApplicationContext(), "Record inserted to cart", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(BuyMedicineDetailsActivity.this,BuyMedicineActivity.class));
                 }
-
             }
-
         });
-
     }
 }
